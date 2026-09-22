@@ -24,7 +24,7 @@ def test_counted_wicket_sends_push() -> None:
     assert push.title == "WICKET"
 
 
-def test_unconfirmed_appeal_does_not_notify() -> None:
+def test_unconfirmed_appeal_still_notifies() -> None:
     push = notify(
         snapshot(
             wickets=0,
@@ -36,4 +36,5 @@ def test_unconfirmed_appeal_does_not_notify() -> None:
             },
         )
     )
-    assert push.send is False
+    assert push.send is True
+    assert push.title == "WICKET"
