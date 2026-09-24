@@ -25,7 +25,8 @@ class Push(BaseModel):
 
 
 def notify(snapshot: ScoreSnapshot) -> Push:
-    if snapshot.last_event.wicket_counted:
+    display = snapshot.last_event.display
+    if snapshot.last_event.wicket_counted or display in {"WICKET", "NOT_OUT"}:
         return Push(
             send=True,
             title="WICKET",
